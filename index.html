@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gaurav Kumar — Big Data &amp; GenAI Engineer</title>
+<meta name="description" content="Gaurav Kumar — Big Data &amp; GenAI Engineer. Fault-tolerant data platforms over billions of records, lakehouse architecture, and production GenAI agents." />
+<meta property="og:title" content="Gaurav Kumar — Big Data &amp; GenAI Engineer" />
+<meta property="og:description" content="Fault-tolerant data platforms over billions of records, lakehouse architecture, and production GenAI agents." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0A0F1C;
+    --bg-elev:#0E1424;
+    --surface:#121A2C;
+    --surface-2:#16203557;
+    --line:#212C46;
+    --line-soft:#1a2337;
+    --text:#EAEEF7;
+    --muted:#98A2BD;
+    --faint:#5D6786;
+    --gold:#E7B84B;
+    --gold-2:#F2CE73;
+    --gold-soft:rgba(231,184,75,.10);
+    --silver:#C3CAD9;
+    --bronze:#C08457;
+    --max:1120px;
+    --r:14px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{
+    margin:0;background:var(--bg);color:var(--text);
+    font-family:"Inter",system-ui,sans-serif;line-height:1.6;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--gold);color:#0A0F1C}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:4px}
+
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .mono{font-family:"JetBrains Mono",monospace;font-weight:400}
+  .eyebrow{
+    font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.08em;
+    color:var(--gold);text-transform:none;display:inline-flex;gap:9px;align-items:center;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);opacity:.6}
+
+  /* ---------- nav ---------- */
+  header.nav{position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(10px);background:rgba(10,15,28,.72);
+    border-bottom:1px solid transparent;transition:border-color .3s}
+  header.nav.scrolled{border-bottom:1px solid var(--line-soft)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .brand{display:flex;align-items:center;gap:11px;font-family:"Sora",sans-serif;font-weight:700;letter-spacing:-.01em}
+  .brand .dot{width:9px;height:9px;border-radius:50%;
+    background:linear-gradient(135deg,var(--bronze),var(--silver) 45%,var(--gold));
+    box-shadow:0 0 0 4px var(--gold-soft)}
+  .nav-links{display:flex;align-items:center;gap:30px}
+  .nav-links a{font-size:14.5px;color:var(--muted);transition:color .2s}
+  .nav-links a:hover{color:var(--text)}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;
+    padding:9px 16px;border-radius:9px;transition:all .2s;font-family:"Sora",sans-serif;
+  }
+  .btn-primary{background:var(--gold);color:#0A0F1C;border:1px solid var(--gold)}
+  .btn-primary:hover{background:var(--gold-2);border-color:var(--gold-2)}
+  .btn-ghost{border:1px solid var(--line);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .nav-toggle{display:none;background:none;border:1px solid var(--line);color:var(--text);
+    border-radius:8px;width:40px;height:38px;cursor:pointer}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:96px 0 70px;overflow:hidden}
+  .hero .glow{position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(680px 380px at 78% -8%,rgba(231,184,75,.10),transparent 60%),
+               radial-gradient(560px 360px at 5% 30%,rgba(195,202,217,.05),transparent 60%)}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.35fr .9fr;gap:48px;align-items:center}
+  h1{font-family:"Sora",sans-serif;font-weight:800;letter-spacing:-.035em;
+    font-size:clamp(44px,7vw,82px);line-height:.98;margin:20px 0 0}
+  h1 .thin{font-weight:500;color:var(--muted)}
+  .lede{font-size:clamp(16px,1.9vw,19px);color:var(--muted);max-width:52ch;margin:22px 0 30px}
+  .lede b{color:var(--text);font-weight:600}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px}
+
+  /* medallion column */
+  .medallion{background:linear-gradient(180deg,var(--surface),#0d1526);
+    border:1px solid var(--line);border-radius:var(--r);padding:22px;
+    box-shadow:0 30px 60px -40px rgba(0,0,0,.9)}
+  .medallion .cap{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--faint);margin-bottom:14px}
+  .layer{display:flex;align-items:center;gap:13px;padding:13px 14px;border-radius:10px;
+    border:1px solid var(--line-soft);margin-bottom:9px;background:var(--surface-2)}
+  .layer:last-child{margin-bottom:0}
+  .layer .chip{width:10px;height:10px;border-radius:3px;flex:none}
+  .layer .lname{font-family:"Sora",sans-serif;font-weight:600;font-size:14.5px}
+  .layer .ldesc{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--faint);margin-left:auto}
+  .chip.bronze{background:var(--bronze)} .chip.silver{background:var(--silver)} .chip.gold{background:var(--gold)}
+
+  /* record stream */
+  .stream{position:relative;margin-top:44px;border-top:1px solid var(--line-soft);
+    border-bottom:1px solid var(--line-soft);padding:12px 0;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);
+            mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .stream-track{display:inline-flex;gap:26px;white-space:nowrap;
+    font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--faint);
+    animation:flow 46s linear infinite}
+  .stream-track span b{color:var(--gold);font-weight:500}
+  @keyframes flow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.stream-track{animation:none}}
+
+  /* ---------- sections ---------- */
+  section{padding:74px 0;border-top:1px solid var(--line-soft)}
+  .sec-head{margin-bottom:38px}
+  .sec-head h2{font-family:"Sora",sans-serif;font-weight:700;letter-spacing:-.02em;
+    font-size:clamp(26px,3.6vw,38px);margin:14px 0 0}
+  .sec-head p{color:var(--muted);max-width:60ch;margin:12px 0 0}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-soft);
+    border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden}
+  .stat{background:var(--bg-elev);padding:22px 20px}
+  .stat .n{font-family:"Sora",sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);letter-spacing:-.02em}
+  .stat .n .u{color:var(--gold)}
+  .stat .l{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--muted);margin-top:6px}
+
+  /* projects */
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r);
+    padding:24px;display:flex;flex-direction:column;transition:border-color .25s,transform .25s;position:relative}
+  .card:hover{border-color:#33406a;transform:translateY(-3px)}
+  .card .flag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--faint);
+    display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+  .card .flag .live{color:var(--gold)}
+  .card h3{font-family:"Sora",sans-serif;font-weight:600;font-size:20px;margin:0 0 8px;letter-spacing:-.01em}
+  .card p{color:var(--muted);font-size:14.5px;margin:0 0 18px}
+  .tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+  .tag{font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--silver);
+    border:1px solid var(--line);border-radius:6px;padding:3px 8px}
+  .card .go{margin-top:16px;font-size:13.5px;font-weight:600;color:var(--gold);
+    font-family:"Sora",sans-serif;display:inline-flex;gap:7px;align-items:center}
+  .card.featured{grid-column:1 / -1;border-color:#3a3220;
+    background:linear-gradient(180deg,rgba(231,184,75,.05),var(--bg-elev))}
+
+  /* experience timeline */
+  .xp{display:grid;grid-template-columns:1fr;gap:0}
+  .xp-item{display:grid;grid-template-columns:190px 1fr;gap:28px;padding:26px 0;border-top:1px solid var(--line-soft)}
+  .xp-item:first-child{border-top:none}
+  .xp-when{font-family:"JetBrains Mono",monospace;font-size:12.5px;color:var(--muted)}
+  .xp-when .now{color:var(--gold)}
+  .xp-role{font-family:"Sora",sans-serif;font-weight:600;font-size:18px;margin:0}
+  .xp-org{color:var(--gold);font-size:14.5px;margin:3px 0 10px}
+  .xp-body{color:var(--muted);font-size:14.5px;margin:0}
+  .xp-body li{margin:5px 0}
+  .xp-body ul{margin:8px 0 0;padding-left:18px}
+
+  /* skills */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .skill-group{background:var(--bg-elev);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+  .skill-group h4{font-family:"JetBrains Mono",monospace;font-weight:500;font-size:12px;
+    color:var(--gold);margin:0 0 14px;letter-spacing:.04em}
+  .skill-group .items{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-group .items span{font-size:13.5px;color:var(--silver);border:1px solid var(--line);
+    border-radius:7px;padding:5px 11px;transition:border-color .2s,color .2s}
+  .skill-group .items span:hover{border-color:var(--gold);color:var(--text)}
+
+  /* contact */
+  .contact{text-align:center;padding:88px 0}
+  .contact h2{font-family:"Sora",sans-serif;font-weight:700;letter-spacing:-.025em;
+    font-size:clamp(30px,5vw,52px);margin:14px 0 0;line-height:1.05}
+  .contact h2 a{color:var(--gold);border-bottom:2px solid transparent;transition:border-color .2s}
+  .contact h2 a:hover{border-color:var(--gold)}
+  .contact .links{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:34px}
+
+  footer{border-top:1px solid var(--line-soft);padding:26px 0;color:var(--faint);
+    font-family:"JetBrains Mono",monospace;font-size:12px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  /* responsive */
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:34px}
+    .medallion{order:2}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .cards{grid-template-columns:1fr}
+    .skills{grid-template-columns:1fr}
+    .xp-item{grid-template-columns:1fr;gap:8px}
+    .nav-links{display:none}
+    .nav-links.open{display:flex;position:absolute;top:66px;left:0;right:0;flex-direction:column;
+      gap:0;background:var(--bg-elev);border-bottom:1px solid var(--line);padding:8px 24px 18px}
+    .nav-links.open a{padding:11px 0;border-bottom:1px solid var(--line-soft)}
+    .nav-links.open .btn{margin-top:12px;justify-content:center}
+    .nav-toggle{display:inline-flex;align-items:center;justify-content:center}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top"><span class="dot"></span>Gaurav&nbsp;Kumar</a>
+    <nav class="nav-links" id="menu">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <a class="btn btn-primary" href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none">
+    <div class="glow"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Big Data &amp; GenAI Engineer · Pharma &amp; Life Sciences</span>
+          <h1>Data platforms<br><span class="thin">that hold at scale.</span></h1>
+          <p class="lede">I build <b>fault-tolerant pipelines</b> over 200M+ record workloads — Spark, Kafka, and Airflow — and the <b>lakehouses</b> and <b>GenAI agents</b> that run on top of them. Currently engineering pharma data products at ZS Associates.</p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#work">View work →</a>
+            <a class="btn btn-ghost" href="https://github.com/gauravkumar22927" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-ghost" href="https://linkedin.com/in/gaurav-kumar-936a94249" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <aside class="medallion" aria-label="Medallion lakehouse architecture">
+          <div class="cap">// lakehouse.medallion</div>
+          <div class="layer"><span class="chip bronze"></span><span class="lname">Bronze</span><span class="ldesc">raw claims</span></div>
+          <div class="layer"><span class="chip silver"></span><span class="lname">Silver</span><span class="ldesc">modeled · governed</span></div>
+          <div class="layer"><span class="chip gold"></span><span class="lname">Gold</span><span class="ldesc">serving tables</span></div>
+        </aside>
+      </div>
+    </div>
+    <!-- record stream signature -->
+    <div class="stream" aria-hidden="true">
+      <div class="stream-track mono" id="streamTrack"></div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section id="scale">
+    <div class="wrap">
+      <div class="stats reveal">
+        <div class="stat"><div class="n">3<span class="u">B+</span></div><div class="l">claims records processed</div></div>
+        <div class="stat"><div class="n">200<span class="u">M+</span></div><div class="l">pipeline record scale</div></div>
+        <div class="stat"><div class="n">3<span class="u">+ yrs</span></div><div class="l">distributed data systems</div></div>
+        <div class="stat"><div class="n">50<span class="u">RPS</span></div><div class="l">GenAI agent, zero drops</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">// 01 selected work</span>
+        <h2>Systems I've built</h2>
+        <p>Distributed data platforms and production AI — from self-managed lakehouses to agentic GenAI. A few I can point at.</p>
+      </div>
+      <div class="cards">
+
+        <article class="card featured reveal">
+          <div class="flag"><span>Pharma · Databricks lakehouse</span><span class="live">● client work</span></div>
+          <h3>SLE Patient Journey — Governed Lakehouse Data Product</h3>
+          <p>An end-to-end patient-journey analytics platform for Systemic Lupus Erythematosus on Databricks. Claims ingested through a Bronze/Silver/Gold medallion architecture; an ~18K-patient cohort locked via a four-stage funnel; longitudinal event sequences embedded with FastText and clustered (KMeans, tracked in MLflow) into journey archetypes; served through Unity Catalog–governed, dashboard-ready Gold tables.</p>
+          <div class="tags">
+            <span class="tag">Databricks</span><span class="tag">Delta Lake</span><span class="tag">Unity Catalog</span>
+            <span class="tag">Workflows</span><span class="tag">MLflow</span><span class="tag">FastText · KMeans</span><span class="tag">PySpark</span>
+          </div>
+        </article>
+
+        <article class="card reveal">
+          <div class="flag"><span>Personal · infra</span><span>open lakehouse</span></div>
+          <h3>Open Lakehouse Platform</h3>
+          <p>A production-style lakehouse I run myself — the stack Databricks and Fabric abstract away. A Spark 4.0 SQL engine over a Hive Metastore catalog and MinIO S3 storage with Delta ACID tables, every service containerized across isolated namespaces with idempotent deploys and an end-to-end smoke test.</p>
+          <div class="tags"><span class="tag">Spark 4.0</span><span class="tag">Delta Lake</span><span class="tag">Hive Metastore</span><span class="tag">Kubernetes</span><span class="tag">MinIO</span></div>
+          <a class="go" href="https://github.com/gauravkumar22927" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+
+        <article class="card reveal">
+          <div class="flag"><span>Personal · GenAI</span><span>agentic</span></div>
+          <h3>AtlasCare — Agentic GenAI Support</h3>
+          <p>An end-to-end GenAI agent that automates Tier-1 support, orchestrating four enterprise backends through LLM tool-calling with a KB-driven RAG policy engine — policy changes ship without a code deploy. Async payment pipeline with semaphore-gated concurrency, auto-retry, and full p50/p95/p99 observability, load-tested at 50 RPS with zero drops.</p>
+          <div class="tags"><span class="tag">LLM Orchestration</span><span class="tag">RAG</span><span class="tag">Tool-Calling</span><span class="tag">Async</span></div>
+          <a class="go" href="https://github.com/gauravkumar22927" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+
+        <article class="card reveal">
+          <div class="flag"><span>Personal · distributed systems</span><span>payments</span></div>
+          <h3>FinFlow — Distributed Payments</h3>
+          <p>Event-driven Go microservices over Apache Kafka on Kubernetes, with a double-entry ledger using HOLD-based reservation and idempotent processing to prevent duplicates under failure. Redis-backed stateless services with Prometheus/Grafana monitoring.</p>
+          <div class="tags"><span class="tag">Go</span><span class="tag">Kafka</span><span class="tag">Kubernetes</span><span class="tag">Redis</span><span class="tag">Prometheus</span></div>
+          <a class="go" href="https://github.com/gauravkumar22927" target="_blank" rel="noopener">View on GitHub →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">// 02 experience</span>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="xp">
+
+        <div class="xp-item reveal">
+          <div class="xp-when"><span class="now">2025 — now</span><br>Gurugram, IN</div>
+          <div>
+            <p class="xp-role">Business Technology Solutions Engineer</p>
+            <p class="xp-org">ZS Associates · Pharma &amp; Life Sciences</p>
+            <div class="xp-body">
+              <ul>
+                <li>Payer-performance pipelines (PB &amp; MB) over 3B+ claims — custom PySpark controller/executor on Kubernetes, orchestrated by Airflow, serving Redshift for Tableau.</li>
+                <li>Built a Microsoft Fabric backend + a production data-quality gate that blocks bad refreshes from reaching Power BI dashboards.</li>
+                <li>SLE patient-journey lakehouse: cohort funnel, clinical profiling, and ML-derived journey archetypes.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="xp-item reveal">
+          <div class="xp-when">2024<br>Chennai, IN</div>
+          <div>
+            <p class="xp-role">Software Engineer</p>
+            <p class="xp-org">FourKites</p>
+            <div class="xp-body">
+              <ul>
+                <li>Event-driven vessel-metadata ingestion with confidence-scored dedup — SQS + async workers upserting PostgreSQL, DML audit logs to S3.</li>
+                <li>Quantified carrier ETA accuracy from 200K+ daily vessel pings into shipper-facing carrier recommendations.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="xp-item reveal">
+          <div class="xp-when">2021 — 2022<br>Bangalore, IN</div>
+          <div>
+            <p class="xp-role">Data Engineer</p>
+            <p class="xp-org">Tata Consultancy Services · ASML Netherlands</p>
+            <div class="xp-body">
+              <ul>
+                <li>End-to-end ML pipeline on semiconductor manufacturing data — unified fragmented sensor logs, engineered 40+ features, automated KPI monitoring.</li>
+                <li>Improved XGBoost accuracy 15% via recursive feature engineering, Bayesian tuning, and NSGA-II feature selection.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">// 03 toolkit</span>
+        <h2>What I work with</h2>
+      </div>
+      <div class="skills">
+        <div class="skill-group reveal">
+          <h4>languages</h4>
+          <div class="items"><span>Python</span><span>Go</span><span>SQL</span><span>PySpark</span><span>Spark SQL</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>big_data</h4>
+          <div class="items"><span>Apache Spark</span><span>Structured Streaming</span><span>Kafka</span><span>Airflow</span><span>Hadoop</span><span>Hive Metastore</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>lakehouse</h4>
+          <div class="items"><span>Delta Lake</span><span>Medallion</span><span>Unity Catalog</span><span>Databricks</span><span>Microsoft Fabric</span><span>Snowflake</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>genai</h4>
+          <div class="items"><span>LLM Integration</span><span>Agentic AI</span><span>RAG</span><span>LangChain</span><span>Vector Embeddings</span><span>MLflow</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>cloud_devops</h4>
+          <div class="items"><span>AWS (S3 · SQS · SageMaker · Redshift)</span><span>Kubernetes</span><span>Docker</span><span>Jenkins</span><span>CI/CD</span></div>
+        </div>
+        <div class="skill-group reveal">
+          <h4>data_tools</h4>
+          <div class="items"><span>PostgreSQL</span><span>Redis</span><span>MongoDB</span><span>Power BI</span><span>Tableau</span><span>Grafana</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center">// let's talk</span>
+      <h2>Building something at scale?<br><a href="mailto:gauravsingh4frnds@gmail.com">gauravsingh4frnds@gmail.com</a></h2>
+      <div class="links">
+        <a class="btn btn-primary" href="mailto:gauravsingh4frnds@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="https://github.com/gauravkumar22927" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn btn-ghost" href="https://linkedin.com/in/gaurav-kumar-936a94249" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-ghost" href="resume.pdf" target="_blank" rel="noopener">Résumé</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© <span id="yr"></span> Gaurav Kumar</span>
+    <span>Built &amp; shipped on Netlify · gauravbuilds.online</span>
+  </div>
+</footer>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // nav shadow on scroll
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // mobile menu
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('menu');
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.classList.remove('open'); toggle.setAttribute('aria-expanded', false);
+  }));
+
+  // record-stream signature
+  (function(){
+    const track = document.getElementById('streamTrack');
+    if(!track) return;
+    const domains = ['claim','rx','hcp','payer','access','cohort','event','txn'];
+    const tokens = [];
+    for(let i=0;i<26;i++){
+      const d = domains[Math.floor(Math.random()*domains.length)];
+      const id = Math.random().toString(16).slice(2,10);
+      const st = Math.random() > .78 ? '<b>GOLD</b>' : (Math.random()>.5?'silver':'bronze');
+      tokens.push(`<span>${d}:${id} · ${st}</span>`);
+    }
+    const html = tokens.join('') ;
+    track.innerHTML = html + html; // duplicate for seamless loop
+  })();
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
